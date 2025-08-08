@@ -56,7 +56,7 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
   return (
     <div
       className="flex flex-col items-center justify-center px-4 py-6 gap-4
-        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 max-w-[500px]"
     >
       <div className="w-full flex justify-between items-center">
         <h3
