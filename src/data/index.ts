@@ -11,12 +11,26 @@ export const initialExperiments: Experiment[] = [
     id: 2,
     title: 'Experiment Module',
     status: ExperimentStatuses.UNLOCKED,
-    iterations: []
+    iterations: [
+      {
+        id: 1,
+        title: 'Iteration title',
+        state: 'done',
+        experimentId: 2
+      }
+    ]
   },
   {
     id: 3,
     title: 'Experiment Module',
     status: ExperimentStatuses.LOCKED,
-    iterations: []
+    iterations: [
+      {
+        id: 1,
+        title: 'Iteration title',
+        state: 'done',
+        experimentId: 3
+      }
+    ]
   }
 ]

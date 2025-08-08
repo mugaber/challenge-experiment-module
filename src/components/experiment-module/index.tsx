@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useExperimentsContext } from '../../context'
 import lockOpenIcon from '../../assets/lock-open.svg'
 import lockClosedIcon from '../../assets/lock-closed.svg'
 import { ExperimentStatuses, type Experiment } from '../../types'
@@ -7,20 +8,16 @@ import TransparentButton from '../buttons'
 
 interface ExperimentModuleProps {
   experiment: Experiment
-  onAddIteration: (experimentId: number) => void
-  onResetExperiment: (experimentId: number) => void
-  onIterationUpdate: (operation: 'done' | 'cancel') => void
-  onLockStatus: (experimentId: number) => void
 }
 
 export default function ExperimentModule(props: ExperimentModuleProps) {
+  const { experiment } = props
   const {
-    experiment,
-    onAddIteration,
-    onResetExperiment,
-    onIterationUpdate,
-    onLockStatus
-  } = props
+    handleAddIteration,
+    handleResetExperiment,
+    handleIterationUpdate,
+    handleLockStatus
+  } = useExperimentsContext()
   const { id: experimentId, status, title, iterations } = experiment
 
   const isEmpty = status === ExperimentStatuses.EMPTY
@@ -36,14 +33,14 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
     if (isLocked) setIsModuleOpen(false)
   }, [isLocked])
 
-  const handleAddIteration = (experimentId: number) => {
+  const handleAddIterationClick = (experimentId: number) => {
     setIsAddingIteration(true)
-    onAddIteration(experimentId)
+    handleAddIteration(experimentId)
   }
 
-  const handleIterationUpdate = (operation: 'done' | 'cancel') => {
+  const handleIterationUpdateClick = (operation: 'done' | 'cancel') => {
     setIsAddingIteration(false)
-    onIterationUpdate(operation)
+    handleIterationUpdate(operation)
   }
 
   const handleModuleOpen = () => {
@@ -51,9 +48,9 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
     setIsModuleOpen(!isModuleOpen)
   }
 
-  const handleLockStatus = () => {
+  const handleLockStatusClick = () => {
     if (isLocked) setIsModuleOpen(true)
-    onLockStatus(experimentId)
+    handleLockStatus(experimentId)
   }
 
   return (
@@ -76,7 +73,7 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
             src={isLocked ? lockClosedIcon : lockOpenIcon}
             alt="Lock Icon"
             className="w-6 h-6 mr-4 cursor-pointer"
-            onClick={handleLockStatus}
+            onClick={handleLockStatusClick}
           />
         )}
       </div>
@@ -116,13 +113,13 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
             {isAddingIteration && (
               <>
                 <TransparentButton
-                  onClick={() => handleIterationUpdate('cancel')}
+                  onClick={() => handleIterationUpdateClick('cancel')}
                 >
                   cancel
                 </TransparentButton>
 
                 <TransparentButton
-                  onClick={() => handleIterationUpdate('done')}
+                  onClick={() => handleIterationUpdateClick('done')}
                 >
                   done
                 </TransparentButton>
@@ -133,14 +130,14 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
               <>
                 {hasIterations && (
                   <TransparentButton
-                    onClick={() => onResetExperiment(experimentId)}
+                    onClick={() => handleResetExperiment(experimentId)}
                   >
                     reset
                   </TransparentButton>
                 )}
 
                 <TransparentButton
-                  onClick={() => handleAddIteration(experimentId)}
+                  onClick={() => handleAddIterationClick(experimentId)}
                 >
                   <span>+</span> add iteration
                 </TransparentButton>
