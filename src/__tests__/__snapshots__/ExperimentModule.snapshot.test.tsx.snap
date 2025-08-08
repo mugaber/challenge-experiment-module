@@ -1,0 +1,222 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+
+exports[`ExperimentModule Snapshot Tests > Different Iteration Configurations > matches snapshot for experiment with different iteration lengths > different-iteration-lengths 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white cursor-pointer"
+    >
+      Different Lengths
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-open-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Different Iteration Configurations > matches snapshot for experiment with mixed iteration states > mixed-iteration-states 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white cursor-pointer"
+    >
+      Mixed States
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-open-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Different States > matches snapshot for empty experiment (closed) > empty-experiment-closed 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white/50 cursor-pointer"
+    >
+      Empty Experiment
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Different States > matches snapshot for empty experiment (open) > empty-experiment-open 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white/50 cursor-pointer"
+    >
+      Empty Experiment
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Different States > matches snapshot for locked experiment > locked-experiment 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white/50 cursor-default"
+    >
+      Locked Experiment
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-closed-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Different States > matches snapshot for single iteration experiment > single-iteration-experiment 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white cursor-pointer"
+    >
+      Single Iteration
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-open-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Different States > matches snapshot for unlocked experiment with iterations > unlocked-experiment-with-iterations 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white cursor-pointer"
+    >
+      Unlocked Experiment
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-open-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Edge Cases > matches snapshot for experiment with many iterations > many-iterations-experiment 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white cursor-pointer"
+    >
+      Many Iterations
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-open-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Edge Cases > matches snapshot for experiment with no title > no-title-experiment 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white/50 cursor-pointer"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Interactive States > matches snapshot for experiment with long title > long-title-experiment 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white cursor-pointer"
+    >
+      Very Long Experiment Title That Might Wrap To Multiple Lines And Test Layout
+    </h3>
+    <img
+      alt="Lock Icon"
+      class="w-6 h-6 mr-4 cursor-pointer"
+      src="lock-open-icon"
+    />
+  </div>
+</div>
+`;
+
+exports[`ExperimentModule Snapshot Tests > Interactive States > matches snapshot when adding iteration > adding-iteration-state 1`] = `
+<div
+  class="flex flex-col items-center justify-center px-4 py-6 gap-4
+        bg-[#242424] rounded-lg w-11/12 sm:w-8/12 lg:w-6/12 2xl:w-4/12"
+>
+  <div
+    class="w-full flex justify-between items-center"
+  >
+    <h3
+      class="flex-1 text-2xl font-bold text-white/50 cursor-pointer"
+    >
+      Empty Experiment
+    </h3>
+  </div>
+</div>
+`;
