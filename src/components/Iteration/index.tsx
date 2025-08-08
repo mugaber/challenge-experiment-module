@@ -1,13 +1,15 @@
+import { type Iteration } from '../../types'
+
 interface IterationProps {
-  id: number
-  title: string
+  iteration: Iteration
   onlyOne: boolean
   first: boolean
   last: boolean
 }
 
 export default function Iteration(props: IterationProps) {
-  const { id, title, onlyOne, first, last } = props
+  const { iteration, onlyOne, first, last } = props
+  const { id, title, state } = iteration
 
   return (
     <div
@@ -23,12 +25,20 @@ export default function Iteration(props: IterationProps) {
       }`}
     >
       <p className="w-2/12 text-white/50 text-xl">EM-{id}</p>
-      <p className="flex-1 text-white/70 text-xl">{title}</p>
+      <p
+        className={`flex-1 text-xl ${
+          state === 'pending' ? 'text-white/50' : 'text-white/70'
+        }`}
+      >
+        {title}
+      </p>
 
-      <div className="flex items-center gap-2">
-        <p className="text-white/50 text-xl">Selection</p>
-        <span className="bg-green-500 w-2 h-2 rounded-full" />
-      </div>
+      {state === 'done' && (
+        <div className="flex items-center gap-2">
+          <p className="text-white/50 text-xl">Selection</p>
+          <span className="bg-green-500 w-2 h-2 rounded-full" />
+        </div>
+      )}
     </div>
   )
 }

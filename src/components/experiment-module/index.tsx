@@ -9,10 +9,12 @@ interface ExperimentModuleProps {
   experiment: Experiment
   onAddIteration: (experimentId: number) => void
   onResetExperiment: (experimentId: number) => void
+  onIterationUpdate: (operation: 'done' | 'cancel') => void
 }
 
 export default function ExperimentModule(props: ExperimentModuleProps) {
-  const { experiment, onAddIteration, onResetExperiment } = props
+  const { experiment, onAddIteration, onResetExperiment, onIterationUpdate } =
+    props
   const { id: experimentId, status, title, iterations } = experiment
 
   const isEmpty = status === ExperimentStatuses.EMPTY
@@ -22,6 +24,17 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
   const hasIterations = iterations.length > 0
 
   const [isModuleOpen, setIsModuleOpen] = useState(false)
+  const [isAddingIteration, setIsAddingIteration] = useState(false)
+
+  const handleAddIteration = (experimentId: number) => {
+    setIsAddingIteration(true)
+    onAddIteration(experimentId)
+  }
+
+  const handleIterationUpdate = (operation: 'done' | 'cancel') => {
+    setIsAddingIteration(false)
+    onIterationUpdate(operation)
+  }
 
   return (
     <div
@@ -59,8 +72,7 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
                 return (
                   <Iteration
                     key={iteration.id}
-                    id={iteration.id}
-                    title={iteration.title}
+                    iteration={iteration}
                     onlyOne={onlyOne}
                     first={isFirst}
                     last={isLast}
@@ -70,7 +82,7 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
             </div>
           )}
 
-          {isEmpty && (
+          {(isEmpty || isAddingIteration) && (
             <div className="w-full p-4 bg-black rounded-lg">
               <p className="text-white/50 text-xl">
                 To add a new iteration, start typing a prompt or{' '}
@@ -80,17 +92,39 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
           )}
 
           <div className="w-full px-4 flex justify-end items-center gap-10">
-            {hasIterations && (
-              <TransparentButton
-                onClick={() => onResetExperiment(experimentId)}
-              >
-                reset
-              </TransparentButton>
+            {isAddingIteration && (
+              <>
+                <TransparentButton
+                  onClick={() => handleIterationUpdate('cancel')}
+                >
+                  cancel
+                </TransparentButton>
+
+                <TransparentButton
+                  onClick={() => handleIterationUpdate('done')}
+                >
+                  done
+                </TransparentButton>
+              </>
             )}
 
-            <TransparentButton onClick={() => onAddIteration(experimentId)}>
-              <span>+</span> add iteration
-            </TransparentButton>
+            {!isAddingIteration && (
+              <>
+                {hasIterations && (
+                  <TransparentButton
+                    onClick={() => onResetExperiment(experimentId)}
+                  >
+                    reset
+                  </TransparentButton>
+                )}
+
+                <TransparentButton
+                  onClick={() => handleAddIteration(experimentId)}
+                >
+                  <span>+</span> add iteration
+                </TransparentButton>
+              </>
+            )}
           </div>
         </div>
       )}
