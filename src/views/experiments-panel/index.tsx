@@ -75,6 +75,24 @@ export default function ExperimentsPanel() {
     })
   }
 
+  const handleLockStatus = (experimentId: number) => {
+    setExperiments((prevExperiments) => {
+      const updatedExperiments = prevExperiments.map((experiment) => {
+        if (experiment.id !== experimentId) return experiment
+
+        return {
+          ...experiment,
+          status:
+            experiment.status === ExperimentStatuses.LOCKED
+              ? ExperimentStatuses.UNLOCKED
+              : ExperimentStatuses.LOCKED
+        }
+      })
+
+      return updatedExperiments
+    })
+  }
+
   const handleResetExperiment = (experimentId: number) => {
     setExperiments((prevExperiments) => {
       const updatedExperiments = prevExperiments.map((experiment) => {
@@ -104,6 +122,7 @@ export default function ExperimentsPanel() {
             onAddIteration={handleAddIteration}
             onResetExperiment={handleResetExperiment}
             onIterationUpdate={handleIterationUpdate}
+            onLockStatus={handleLockStatus}
           />
         ))}
       </div>

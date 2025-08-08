@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import lockOpenIcon from '../../assets/lock-open.svg'
 import lockClosedIcon from '../../assets/lock-closed.svg'
 import { ExperimentStatuses, type Experiment } from '../../types'
@@ -10,11 +10,17 @@ interface ExperimentModuleProps {
   onAddIteration: (experimentId: number) => void
   onResetExperiment: (experimentId: number) => void
   onIterationUpdate: (operation: 'done' | 'cancel') => void
+  onLockStatus: (experimentId: number) => void
 }
 
 export default function ExperimentModule(props: ExperimentModuleProps) {
-  const { experiment, onAddIteration, onResetExperiment, onIterationUpdate } =
-    props
+  const {
+    experiment,
+    onAddIteration,
+    onResetExperiment,
+    onIterationUpdate,
+    onLockStatus
+  } = props
   const { id: experimentId, status, title, iterations } = experiment
 
   const isEmpty = status === ExperimentStatuses.EMPTY
@@ -26,6 +32,10 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
   const [isModuleOpen, setIsModuleOpen] = useState(false)
   const [isAddingIteration, setIsAddingIteration] = useState(false)
 
+  useEffect(() => {
+    if (isLocked) setIsModuleOpen(false)
+  }, [isLocked])
+
   const handleAddIteration = (experimentId: number) => {
     setIsAddingIteration(true)
     onAddIteration(experimentId)
@@ -36,6 +46,16 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
     onIterationUpdate(operation)
   }
 
+  const handleModuleOpen = () => {
+    if (isLocked) return
+    setIsModuleOpen(!isModuleOpen)
+  }
+
+  const handleLockStatus = () => {
+    if (isLocked) setIsModuleOpen(true)
+    onLockStatus(experimentId)
+  }
+
   return (
     <div
       className="flex flex-col items-center justify-center px-4 py-6 gap-4
@@ -43,10 +63,10 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
     >
       <div className="w-full flex justify-between items-center">
         <h3
-          className={`flex-1 text-2xl font-bold cursor-pointer ${
+          className={`flex-1 text-2xl font-bold ${
             isUnlocked ? 'text-white' : 'text-white/50'
-          }`}
-          onClick={() => setIsModuleOpen(!isModuleOpen)}
+          } ${isLocked ? 'cursor-default' : 'cursor-pointer'}`}
+          onClick={handleModuleOpen}
         >
           {title}
         </h3>
@@ -55,7 +75,8 @@ export default function ExperimentModule(props: ExperimentModuleProps) {
           <img
             src={isLocked ? lockClosedIcon : lockOpenIcon}
             alt="Lock Icon"
-            className="w-6 h-6 mr-4"
+            className="w-6 h-6 mr-4 cursor-pointer"
+            onClick={handleLockStatus}
           />
         )}
       </div>
