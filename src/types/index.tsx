@@ -1,10 +1,12 @@
 export type IterationState = 'pending' | 'done'
+export type IterationLength = 'short' | 'medium' | 'long'
 
 export type Iteration = {
   id: number
   title: string
   experimentId: number
   state: IterationState
+  length: IterationLength
 }
 
 export const ExperimentStatuses = {

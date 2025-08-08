@@ -4,7 +4,7 @@ import lockOpenIcon from '../../assets/lock-open.svg'
 import lockClosedIcon from '../../assets/lock-closed.svg'
 import { ExperimentStatuses, type Experiment } from '../../types'
 import Iteration from '../Iteration'
-import TransparentButton from '../buttons'
+import TransparentButton from '../buttons/transparent'
 
 interface ExperimentModuleProps {
   experiment: Experiment

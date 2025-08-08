@@ -3,7 +3,8 @@ import { initialExperiments } from '../data'
 import {
   ExperimentStatuses,
   type IterationState,
-  type Iteration
+  type Iteration,
+  type IterationLength
 } from '../types'
 import { ExperimentsContext, type ExperimentsContextType } from './index'
 
@@ -39,7 +40,8 @@ export default function ExperimentsProvider({
               id: iterationId,
               title: 'Adding iteration...',
               experimentId,
-              state: 'pending' as IterationState
+              state: 'pending' as IterationState,
+              length: 'short' as IterationLength
             }
           ]
         }
@@ -82,6 +84,54 @@ export default function ExperimentsProvider({
     setActiveIteration(null)
   }
 
+  const handleIterationLengthUpdate = (
+    experimentId: number,
+    iterationId: number,
+    length: IterationLength
+  ) => {
+    setExperiments((prevExperiments) => {
+      const updatedExperiments = prevExperiments.map((experiment) => {
+        if (experiment.id !== experimentId) return experiment
+
+        const updatedIterations = experiment.iterations.map((iteration) => {
+          if (iteration.id !== iterationId) return iteration
+
+          return { ...iteration, length }
+        })
+
+        return { ...experiment, iterations: updatedIterations }
+      })
+
+      return updatedExperiments
+    })
+  }
+
+  const handleRemoveIteration = (experimentId: number, iterationId: number) => {
+    setExperiments((prevExperiments) => {
+      const updatedExperiments = prevExperiments.map((experiment) => {
+        if (experiment.id !== experimentId) return experiment
+
+        const updatedIterations = experiment.iterations.filter(
+          (iteration) => iteration.id !== iterationId
+        )
+
+        updatedIterations.forEach((iteration, index) => {
+          iteration.id = index + 1
+        })
+
+        const updateStatus = updatedIterations.length === 0
+
+        return {
+          ...experiment,
+          ...(updateStatus && { status: ExperimentStatuses.EMPTY }),
+          iterations: updatedIterations as Iteration[]
+        }
+      })
+
+      return updatedExperiments
+    })
+  }
+
   const handleLockStatus = (experimentId: number) => {
     setExperiments((prevExperiments) => {
       const updatedExperiments = prevExperiments.map((experiment) => {
@@ -122,6 +172,8 @@ export default function ExperimentsProvider({
     activeIteration,
     handleAddIteration,
     handleIterationUpdate,
+    handleIterationLengthUpdate,
+    handleRemoveIteration,
     handleLockStatus,
     handleResetExperiment
   }

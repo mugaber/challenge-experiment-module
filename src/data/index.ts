@@ -16,7 +16,8 @@ export const initialExperiments: Experiment[] = [
         id: 1,
         title: 'Iteration title',
         state: 'done',
-        experimentId: 2
+        experimentId: 2,
+        length: 'short'
       }
     ]
   },
@@ -29,7 +30,15 @@ export const initialExperiments: Experiment[] = [
         id: 1,
         title: 'Iteration title',
         state: 'done',
-        experimentId: 3
+        experimentId: 3,
+        length: 'medium'
+      },
+      {
+        id: 2,
+        title: 'Iteration title',
+        state: 'done',
+        experimentId: 3,
+        length: 'long'
       }
     ]
   }
